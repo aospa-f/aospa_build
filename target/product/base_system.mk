@@ -355,15 +355,11 @@ ifneq ($(PRODUCT_NO_DYNAMIC_SYSTEM_UPDATE),true)
 
 endif
 
-# Check if the build supports NFC apex or not
-ifeq ($(RELEASE_PACKAGE_NFC_STACK),NfcNci)
-    PRODUCT_PACKAGES += \
-        framework-nfc \
-        NfcNci
-else
-    PRODUCT_PACKAGES += \
-        com.android.nfcservices
-endif
+# Ship the classic NFC stack: the nfcservices APEX (Android 17 NCI client)
+# protocol-mismatches the OOS vendor NFC HAL on this device.
+PRODUCT_PACKAGES += \
+    framework-nfc \
+    NfcNci
 
 # Check if the build supports Profiling module
 ifeq ($(RELEASE_PACKAGE_PROFILING_MODULE),true)

@@ -115,14 +115,8 @@ else
 endif
 
 # Check if the build supports NFC apex or not
-ifeq ($(RELEASE_PACKAGE_NFC_STACK),NfcNci)
-    PRODUCT_BOOT_JARS += \
-        framework-nfc
-else
-    PRODUCT_APEX_BOOT_JARS += \
-        com.android.nfcservices:framework-nfc
-    $(call soong_config_set,bootclasspath,nfc_apex_bootclasspath_fragment,true)
-endif
+PRODUCT_BOOT_JARS += \
+    framework-nfc
 
 # Check if build supports Profiling module.
 ifeq ($(RELEASE_PACKAGE_PROFILING_MODULE),true)
